@@ -2,6 +2,7 @@
 """
 This script trains a Random Forest
 """
+import tempfile
 import argparse
 from concurrent.futures import process
 from inspect import signature
@@ -102,9 +103,12 @@ def go(args):
     # HINT: use mlflow.sklearn.save_model
     # YOUR CODE HERE
     ######################################
+    temp_file = tempfile.mkdtemp()
+    outdir = os.path.join(temp_file, "random_forest_dir")
     mlflow.sklearn.save_model(
         sk_pipe,
-        args.output_artifact
+        outdir,
+        serialization_format=mlflow.sklearn.SERIALIZATION_FORMAT_CLOUDPICKLE
     )
 
     ######################################
@@ -120,8 +124,9 @@ def go(args):
         type='model_export',
         description="Exports trained model"
     )
-    artifact.add_dir(args.output_artifact)
+    artifact.add_dir(outdir)
     run.log_artifact(artifact)
+    artifact.wait()
 
     # Plot feature importance
     fig_feat_imp = plot_feature_importance(sk_pipe, processed_features)
