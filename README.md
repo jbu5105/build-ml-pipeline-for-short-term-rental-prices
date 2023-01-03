@@ -6,6 +6,10 @@ to be retrained with the same cadence, necessitating an end-to-end pipeline that
 
 In this project you will build such a pipeline.
 
+## Necessary links:
+   Github repository: [https://github.com/jbu5105/build-ml-pipeline-for-short-term-rental-prices](https://github.com/jbu5105/build-ml-pipeline-for-short-term-rental-prices)
+   Weights & Biases project: [https://wandb.ai/jbs_daisys/nyc_airbnb](https://wandb.ai/jbs_daisys/nyc_airbnb)
+
 ## Table of contents
 
 - [Introduction](#build-an-ML-Pipeline-for-Short-Term-Rental-Prices-in-NYC)
@@ -38,7 +42,7 @@ and click on `Fork` in the upper right corner. This will create a fork in your G
 repository that is under your control. Now clone the repository locally so you can start working on it:
 
 ```
-git clone https://github.com/[your github username]/build-ml-pipeline-for-short-term-rental-prices.git
+git clone https://github.com/jbu5105/build-ml-pipeline-for-short-term-rental-prices
 ```
 
 and go into the repository:
@@ -343,7 +347,7 @@ with the cleaned data:
      - pip=20.3.3
      - pandas=1.2.3
      - pip:
-         - wandb==0.10.31
+         - wandb==0.12.17
    ```
    
 4. Add the ``basic_cleaning`` step to the pipeline (the ``main.py`` file):
@@ -539,7 +543,7 @@ train the model on a new sample of data that our company received (``sample2.csv
 
 (be ready for a surprise, keep reading even if the command fails)
 ```bash
-> mlflow run https://github.com/[your github username]/build-ml-pipeline-for-short-term-rental-prices.git \
+> mlflow run https://github.com/jbu5105/build-ml-pipeline-for-short-term-rental-prices \
              -v [the version you want to use, like 1.0.0] \
              -P hydra_options="etl.sample='sample2.csv'"
 ```
